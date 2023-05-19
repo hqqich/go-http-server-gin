@@ -1,0 +1,34 @@
+# # yaml 配置实例
+# version: '3'
+# services:
+#   web:
+#     build: .
+#     ports:
+#       - "5000:5000"
+#     volumes:
+#       - .:/code
+#       - logvolume01:/var/log
+#     links:
+#       - redis
+#   redis:
+#     image: redis
+# volumes:
+#   logvolume01: {}
+
+# yaml 配置
+version: '3.2'  #下面volumes需要我们版本version是3.2的才能使用
+services:
+  web:
+    container_name: go-http-server  #有默认的值，但使用了就不能使用横向扩展
+    build: .  #指定Dockerfile的上下文目录为当前目录
+    ports:
+      - "8888:8888"
+    volumes:
+      - type: bind
+        source: G:\\opt   #这个是宿主机的地址
+        target: /app/static  #这个是容器里配置文件的地址
+  redis:  #redis服务的名称，代码中连接时不能使用IP，用这个当域名，如：（Jedis jedis = new Jedis("redis", 6379)）
+    image: "redis:alpine"  #这里使用最小镜像的redis镜像
+    container_name: go-http-redis
+    ports:
+      - "6379:6379"

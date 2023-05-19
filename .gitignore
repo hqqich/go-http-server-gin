@@ -1,0 +1,17 @@
+/.vscode/
+
+app
+go.sum
+goHttpServerGin-*
+static/
+/.fleet/
+/.idea/
+/.dist/
+package-lockjson
+node_modules/
+dist
+/dist/
+/file/
+/vuesrc/package-lock.json
+/log/
+/vuesrc/.idea/
